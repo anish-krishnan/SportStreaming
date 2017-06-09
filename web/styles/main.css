@@ -21,6 +21,9 @@ main, #messages-card {
   height: 100%;
   padding-bottom: 0;
 }
+#message-list {
+  height: calc(100vh - 150px);
+}
 #messages-card-container {
   height: calc(100% - 150px);
   padding-bottom: 0;
