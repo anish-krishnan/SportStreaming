@@ -168,7 +168,7 @@ main, #messages-card {
 #mediaCapture {
   display: none;
 }
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 610) {
   header {
     height: 113px;
     padding-bottom: 80px !important;
