@@ -21,8 +21,19 @@ main, #messages-card {
   height: 100%;
   padding-bottom: 0;
 }
+#video {
+  width: 500px;
+  position:absolute;
+  top:25%;
+  transform:translateY(-25%);
+  right:25%;
+  transform:translateX(25%);
+}
 #message-list {
   height: calc(100vh - 150px);
+  position:absolute;
+  right:0;
+  transform:translateX(100%);
 }
 #messages-card-container {
   height: calc(100% - 150px);
