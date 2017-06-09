@@ -52,12 +52,12 @@ main, #messages-card {
   padding-bottom: 0;
 }
 #messages {
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-bottom: 10px;
-  height: calc(100% - 80px);
+  height: 800px /*calc(100% - 80px)*/;
 }
 #message-filler {
-  flex-grow: 1;
+  flex-grow: 0;
 }
 .message-container:first-of-type {
   border-top-width: 0;
