@@ -32,24 +32,27 @@ function FriendlyChat() {
   this.signInButton = document.getElementById('sign-in');
   this.signOutButton = document.getElementById('sign-out');
   this.signInSnackbar = document.getElementById('must-signin-snackbar');
-  this.love = document.getElementById('fa-heart');
-  this.loveCount = document.getElementById('heartc');
-  this.like = document.getElementById('fa-thumbs-up');
-  this.likeCount = document.getElementById('likec')
-  this.dislike = document.getElementById('fa-thumbs-down');
-  this.dislikeCount = document.getElementById('dislikec');
-
-  var firebaseRef = new Firebase("https://sportstreaming-680e1.firebaseapp.com");
-  function clickL(evt) {
-    var lovec = $('lovec').val();
-    $('lovec').setText(lovec+1);
-    //firebaseRef.set();
-  }
-  this.love.onclick = clickL;
+  this.heart = document.getElementById('heart');
+  this.like = document.getElementById('thumbs-up');
+  this.dislike = document.getElementById('thumbs-down');
+  this.heartc = 0;
+  this.likec = 0;
+  this.dislikec = 0;
   // Saves message on form submit.
   this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
   this.signOutButton.addEventListener('click', this.signOut.bind(this));
   this.signInButton.addEventListener('click', this.signIn.bind(this));
+
+  //Reactions
+  this.heart.addEventListener('click', function(e) {
+    e.preventDefault();
+    var lovec = document.getElementById('lovec');
+    this.heartc = 1 - this.heartc;
+    lovec.textContent = (this.heartc).toString();
+    console.log(this.heartc);
+  });
+  this.like.addEventListener('click', this.addLike(this));
+  this.dislike.addEventListener('click', this.addDislike(this));
 
   // Toggle for the button.
   var buttonTogglingHandler = this.toggleButton.bind(this);
@@ -181,6 +184,25 @@ FriendlyChat.prototype.signIn = function() {
 FriendlyChat.prototype.signOut = function() {
   // Sign out of Firebase.
   this.auth.signOut();
+};
+
+//Adds a Like
+FriendlyChat.prototype.addLike = function() {
+  var likec = document.getElementById('likec');
+  //firebase.database.ref('like').update()
+  likec.textContent = (likec.value + 1).toString();
+};
+
+//Adds a Dislike
+FriendlyChat.prototype.addDislike = function() {
+  var dislikec = document.getElementById('dislikec');
+  //firebase.database.ref('dislikes').update()
+  dislikec.textContent = (dislikec.value + 1).toString();
+};
+
+//Adds a Heart
+FriendlyChat.prototype.addLove = function() {
+
 };
 
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
