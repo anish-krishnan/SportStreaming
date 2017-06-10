@@ -32,7 +32,20 @@ function FriendlyChat() {
   this.signInButton = document.getElementById('sign-in');
   this.signOutButton = document.getElementById('sign-out');
   this.signInSnackbar = document.getElementById('must-signin-snackbar');
+  this.love = document.getElementById('fa-heart');
+  this.loveCount = document.getElementById('heartc');
+  this.like = document.getElementById('fa-thumbs-up');
+  this.likeCount = document.getElementById('likec')
+  this.dislike = document.getElementById('fa-thumbs-down');
+  this.dislikeCount = document.getElementById('dislikec');
 
+  var firebaseRef = new Firebase("https://sportstreaming-680e1.firebaseapp.com");
+  function clickL(evt) {
+    var lovec = $('lovec').val();
+    $('lovec').setText(lovec+1);
+    //firebaseRef.set();
+  }
+  this.love.onclick = clickL;
   // Saves message on form submit.
   this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
   this.signOutButton.addEventListener('click', this.signOut.bind(this));
