@@ -22,12 +22,12 @@ main, #messages-card {
   padding-bottom: 0;
 }
 #video {
-  width: 500px;
+  width: 65vw;
   position:absolute;
-  top:25%;
-  transform:translateY(-25%);
-  right:25%;
-  transform:translateX(25%);
+  top:5%;
+  transform:translateY(-5%);
+  right:5%;
+  transform:translateX(5%);
 }
 #message-list {
   height: calc(100vh - 150px);
