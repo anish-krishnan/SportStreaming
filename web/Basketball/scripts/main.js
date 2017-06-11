@@ -38,25 +38,70 @@ function FriendlyChat() {
   var lovec = 0;
   var likec = 0;
   var dislikec = 0;
+  var lovesCountRef = firebase.database().ref('loves');
+  var likesCountRef = firebase.database().ref('likes');
+  var dislikesCountRef = firebase.database().ref('dislikes');
   // Saves message on form submit.
   this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
   this.signOutButton.addEventListener('click', this.signOut.bind(this));
   this.signInButton.addEventListener('click', this.signIn.bind(this));
 
   //Reactions
-  var lovesCountRef = firebase.database().ref('loves');
+
   lovesCountRef.on('value', function(snapshot) {
     var love = document.getElementById('lovec');
+    if(lovec > 0) {
+      if(likec > 0) {
+        likec = 0;
+        likesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+      if(dislikec > 0) {
+        dislikec = 0;
+        dislikesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+    }
     love.textContent = snapshot.val().toString();
   });
-  var likesCountRef = firebase.database().ref('likes');
+
   likesCountRef.on('value', function(snapshot) {
     var like = document.getElementById('likec');
+    if(likec > 0) {
+      if(lovec > 0) {
+        lovec = 0;
+        lovesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+      if(dislikec > 0) {
+        dislikec = 0;
+        dislikesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+    }
     like.textContent = snapshot.val().toString();
   });
-  var dislikesCountRef = firebase.database().ref('dislikes');
+
   dislikesCountRef.on('value', function(snapshot) {
     var dislike = document.getElementById('dislikec');
+    if(dislikec > 0) {
+      if(lovec > 0) {
+        lovec = 0;
+        lovesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+      if(likec > 0) {
+        likec = 0;
+        likesCountRef.transaction(function(val) {
+          return val - 1;
+        });
+      }
+    }
     dislike.textContent = snapshot.val().toString();
   });
   this.love.addEventListener('click', function(e) {
