@@ -35,9 +35,9 @@ function FriendlyChat() {
   this.heart = document.getElementById('heart');
   this.like = document.getElementById('thumbs-up');
   this.dislike = document.getElementById('thumbs-down');
-  this.heartc = 0;
-  this.likec = 0;
-  this.dislikec = 0;
+  var heartc = 0;
+  var likec = 0;
+  var dislikec = 0;
   // Saves message on form submit.
   this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
   this.signOutButton.addEventListener('click', this.signOut.bind(this));
@@ -46,13 +46,25 @@ function FriendlyChat() {
   //Reactions
   this.heart.addEventListener('click', function(e) {
     e.preventDefault();
-    var lovec = document.getElementById('lovec');
-    this.heartc = 1 - this.heartc;
-    lovec.textContent = (this.heartc).toString();
-    console.log(this.heartc);
+    var love = document.getElementById('lovec');
+    heartc = 1 - heartc;
+    love.textContent = (heartc).toString();
+    console.log(heartc);
   });
-  this.like.addEventListener('click', this.addLike(this));
-  this.dislike.addEventListener('click', this.addDislike(this));
+  this.like.addEventListener('click', function(e) {
+    e.preventDefault();
+    var like = document.getElementById('likec');
+    likec = 1 - likec;
+    like.textContent = (likec).toString();
+    console.log(likec);
+  });
+  this.dislike.addEventListener('click', function(e) {
+    e.preventDefault();
+    var dislike = document.getElementById('dislikec');
+    dislikec = 1 - dislikec;
+    dislike.textContent = (dislikec).toString();
+    console.log(dislikec);
+  });
 
   // Toggle for the button.
   var buttonTogglingHandler = this.toggleButton.bind(this);
