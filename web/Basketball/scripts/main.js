@@ -32,10 +32,10 @@ function FriendlyChat() {
   this.signInButton = document.getElementById('sign-in');
   this.signOutButton = document.getElementById('sign-out');
   this.signInSnackbar = document.getElementById('must-signin-snackbar');
-  this.heart = document.getElementById('heart');
+  this.love = document.getElementById('heart');
   this.like = document.getElementById('thumbs-up');
   this.dislike = document.getElementById('thumbs-down');
-  var heartc = 0;
+  var lovec = 0;
   var likec = 0;
   var dislikec = 0;
   // Saves message on form submit.
@@ -44,26 +44,65 @@ function FriendlyChat() {
   this.signInButton.addEventListener('click', this.signIn.bind(this));
 
   //Reactions
-  this.heart.addEventListener('click', function(e) {
-    e.preventDefault();
+  var lovesCountRef = firebase.database().ref('loves');
+  lovesCountRef.on('value', function(snapshot) {
     var love = document.getElementById('lovec');
-    heartc = 1 - heartc;
-    love.textContent = (heartc).toString();
-    console.log(heartc);
+    love.textContent = snapshot.val().toString();
+  });
+  var likesCountRef = firebase.database().ref('likes');
+  likesCountRef.on('value', function(snapshot) {
+    var like = document.getElementById('likec');
+    like.textContent = snapshot.val().toString();
+  });
+  var dislikesCountRef = firebase.database().ref('dislikes');
+  dislikesCountRef.on('value', function(snapshot) {
+    var dislike = document.getElementById('dislikec');
+    dislike.textContent = snapshot.val().toString();
+  });
+  this.love.addEventListener('click', function(e) {
+    e.preventDefault();
+    lovec = 1 - lovec;
+    lovesCountRef.transaction(function(val) {
+      var num = 0;
+      if(lovec < 1 && val > 0) {
+        num = val - 1;
+      }
+      else if(lovec < 1)
+        num = 0;
+      else
+        num = val + 1;
+      return num;
+    });
   });
   this.like.addEventListener('click', function(e) {
     e.preventDefault();
-    var like = document.getElementById('likec');
     likec = 1 - likec;
-    like.textContent = (likec).toString();
-    console.log(likec);
+    likesCountRef.transaction(function(val) {
+      var num = 0;
+      if(likec < 1 && val > 0) {
+        num = val - 1;
+      }
+      else if(likec < 1)
+        num = 0;
+      else
+        num = val + 1;
+      return num;
+    });
   });
   this.dislike.addEventListener('click', function(e) {
     e.preventDefault();
-    var dislike = document.getElementById('dislikec');
     dislikec = 1 - dislikec;
-    dislike.textContent = (dislikec).toString();
-    console.log(dislikec);
+    dislikesCountRef.transaction(function(val) {
+      var num = 0;
+      if(dislikec < 1 && val > 0) {
+        num = val - 1;
+      }
+      else if(dislikec < 1)
+        num = 0;
+      else
+        num = val + 1;
+      return num;
+    });
   });
 
   // Toggle for the button.

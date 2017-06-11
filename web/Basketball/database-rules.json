@@ -1,5 +1,17 @@
 {
   "rules": {
+    "loves": {
+      ".read": "auth !== null",
+      ".write": "auth !== null"
+    },
+    "likes": {
+      ".read": "auth !== null",
+      ".write": "auth !== null"
+    },
+    "dislikes": {
+      ".read": "auth !== null",
+      ".write": "auth !== null"
+    },
     "messages": {
       ".read": "auth !== null",
       ".write": "auth !== null"
