@@ -63,12 +63,6 @@ function FriendlyChat() {
           return val - 1;
         });
       }
-      //document.getElementById('heart').classList.toggle('fa-heart-o');
-      //document.getElementById('heart').classList.toggle('fa-heart');
-    }
-    else{
-      //document.getElementById('heart').classList.toggle('fa-heart');
-      //document.getElementById('heart').classList.toggle('fa-heart-o');
     }
     love.textContent = snapshot.val().toString();
   });
@@ -88,12 +82,6 @@ function FriendlyChat() {
           return val - 1;
         });
       }
-      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
-      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
-    }
-    else{
-      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
-      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
     }
     like.textContent = snapshot.val().toString();
   });
@@ -113,12 +101,6 @@ function FriendlyChat() {
           return val - 1;
         });
       }
-      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
-      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
-    }
-    else{
-      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
-      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
     }
     dislike.textContent = snapshot.val().toString();
   });
@@ -127,13 +109,24 @@ function FriendlyChat() {
     lovec = 1 - lovec;
     lovesCountRef.transaction(function(val) {
       var num = 0;
-      if(lovec < 1 && val > 0) {
+      if(lovec < 1) {
         num = val - 1;
+        document.getElementById('heart').classList.toggle('fa-heart-o');
+        document.getElementById('heart').classList.toggle('fa-heart');
       }
-      else if(lovec < 1)
-        num = 0;
-      else
+      else {
         num = val + 1;
+        document.getElementById('heart').classList.toggle('fa-heart-o');
+        document.getElementById('heart').classList.toggle('fa-heart');
+        if(likec > 0) {
+          document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+          document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
+        }
+        if(dislikec > 0) {
+          document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+          document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
+        }
+      }
       return num;
     });
   });
@@ -142,13 +135,24 @@ function FriendlyChat() {
     likec = 1 - likec;
     likesCountRef.transaction(function(val) {
       var num = 0;
-      if(likec < 1 && val > 0) {
+      if(likec < 1) {
         num = val - 1;
+        document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+        document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
       }
-      else if(likec < 1)
-        num = 0;
-      else
+      else {
         num = val + 1;
+        document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+        document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
+        if(lovec > 0) {
+          document.getElementById('heart').classList.toggle('fa-heart-o');
+          document.getElementById('heart').classList.toggle('fa-heart');
+        }
+        if(dislikec > 0) {
+          document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+          document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
+        }
+      }
       return num;
     });
   });
@@ -157,13 +161,24 @@ function FriendlyChat() {
     dislikec = 1 - dislikec;
     dislikesCountRef.transaction(function(val) {
       var num = 0;
-      if(dislikec < 1 && val > 0) {
+      if(dislikec < 1) {
         num = val - 1;
+        document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+        document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
       }
-      else if(dislikec < 1)
-        num = 0;
-      else
+      else {
         num = val + 1;
+        document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+        document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
+        if(lovec > 0) {
+          document.getElementById('heart').classList.toggle('fa-heart-o');
+          document.getElementById('heart').classList.toggle('fa-heart');
+        }
+        if(likec > 0) {
+          document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+          document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
+        }
+      }
       return num;
     });
   });
