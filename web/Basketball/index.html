@@ -13,6 +13,7 @@
   -->
 <html lang="en">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/5af7104f4e.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,7 +80,11 @@
               <th>
                 <div id="video">
                   <iframe height="500" src="https://www.youtube.com/embed/9AnfBqbNmfI" frameborder="0" allowfullscreen></iframe>
-                  <i id="heart" class="fa fa-heart" aria-hidden="true"></i> &nbsp
+                  <span class="change-love">
+                    <input type="checkbox" id="love-check">
+                    <label for="love-check"><i id="heart" class="fa love fa-heart" aria-hidden="true"></i></label>
+                    <!--<i id="heart" class="fa love fa-heart" aria-hidden="true"></i> &nbsp-->
+                  </span>
                   <p id="lovec"> 0 </p> &nbsp
                   <i id="thumbs-up" class="fa fa-thumbs-up" aria-hidden="true"></i> &nbsp
                   <p id="likec"> 0 </p> &nbsp&nbsp

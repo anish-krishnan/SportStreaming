@@ -63,6 +63,12 @@ function FriendlyChat() {
           return val - 1;
         });
       }
+      //document.getElementById('heart').classList.toggle('fa-heart-o');
+      //document.getElementById('heart').classList.toggle('fa-heart');
+    }
+    else{
+      //document.getElementById('heart').classList.toggle('fa-heart');
+      //document.getElementById('heart').classList.toggle('fa-heart-o');
     }
     love.textContent = snapshot.val().toString();
   });
@@ -82,6 +88,12 @@ function FriendlyChat() {
           return val - 1;
         });
       }
+      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
+      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+    }
+    else{
+      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-o-up');
+      document.getElementById('thumbs-up').classList.toggle('fa-thumbs-up');
     }
     like.textContent = snapshot.val().toString();
   });
@@ -101,6 +113,12 @@ function FriendlyChat() {
           return val - 1;
         });
       }
+      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
+      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+    }
+    else{
+      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-o-down');
+      document.getElementById('thumbs-down').classList.toggle('fa-thumbs-down');
     }
     dislike.textContent = snapshot.val().toString();
   });
